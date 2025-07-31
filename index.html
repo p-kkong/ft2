@@ -19,8 +19,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
+  
   <div class="loader"><h1>Loading...</h1></div>
   <div class="cursor"></div>
   <div class="time-bar">
@@ -36,6 +38,7 @@
 
   <!-- 메인 비디오 섹션 -->
   <section class="hero" id="hero">
+    <div id="particles-js"></div>
     <video src="./vid/space.mp4" muted="" autoplay="" loop=""></video>
     <h1 class="title" id="type-target">
       <span class="type-line" data-text="I build fluid interfaces"></span><br />
@@ -50,13 +53,28 @@
       웹 에이전시에서 <strong class="highlight">웹 퍼블리셔</strong>로 근무하면서 다양한 경험을 쌓아왔습니다.
     </div>
     <div class="text-block">
-      <strong class="highlight">그누보드 기반</strong>으로 <strong class="highlight">반응형 웹사이트</strong>를 설계 및 퍼블리싱하였고,
-    </div>
-    <div class="text-block">
+      <strong class="highlight">그누보드 기반</strong>으로 <strong class="highlight">반응형 웹사이트</strong>를 설계 및 퍼블리싱하였고,<br>
       <strong class="highlight">기업 홈페이지</strong>, <strong class="highlight">정부 포럼</strong>, <strong class="highlight">이벤트 페이지</strong> 등 폭넓은 프로젝트에 참여했습니다.
     </div>
     <div class="text-block">
-      <strong class="highlight">GSAP</strong>, <strong class="highlight">AOS</strong> 등 다양한 모션 툴을 사용해 <strong class="highlight">창의적인 UI</strong>를 구현해왔습니다.
+      <strong class="highlight">GSAP</strong>, <strong class="highlight">AOS</strong> 등 다양한 모션 툴을 사용해 <strong class="highlight">창의적인 UI</strong>를 구현해왔습니다.<br>
+      사용자의 흐름을 고려한 <strong class="highlight">UX 설계</strong>와 <strong class="highlight">퍼포먼스 최적화</strong>를 함께 고민하며 작업합니다.
+    </div>
+    <div class="text-block">
+      마크업 시멘틱 구조와 웹 접근성을 준수하며, <strong class="highlight">크로스브라우징</strong> 이슈 해결에도 능숙합니다.<br>
+      팀원과의 협업에서 <strong class="highlight">정리된 문서화</strong>와 <strong class="highlight">유지보수 편의성</strong>을 항상 고려합니다.
+    </div>
+    <div class="text-block">
+      단순한 퍼블리싱을 넘어 <strong class="highlight">인터랙티브한 사용자 경험</strong>을 만드는 것을 즐깁니다.<br>
+      <strong class="highlight">SCSS 구조화</strong>와 <strong class="highlight">BEM 네이밍</strong> 방식으로 코드 일관성을 유지합니다.
+    </div>
+    <div class="text-block">
+      프로젝트에 따라 <strong class="highlight">Vue</strong> 또는 <strong class="highlight">JavaScript</strong> 컴포넌트를 직접 다루며 퍼블리싱합니다.<br>
+      퍼블리싱과 개발 사이의 간극을 줄이기 위해 <strong class="highlight">Git 협업</strong>과 <strong class="highlight">브랜치 전략</strong>에도 익숙합니다.
+    </div>
+    <div class="text-block">
+      단순히 예쁜 화면이 아니라 <strong class="highlight">의도 있는 동선</strong>과 <strong class="highlight">상호작용</strong>을 설계하려고 노력합니다.<br>
+      언제나 <strong class="highlight">디테일</strong>을 고민하고, 트렌디하면서도 <strong class="highlight">사용자 중심의 퍼블리싱</strong>을 지향합니다.
     </div>
   </div>
 </section>
@@ -143,7 +161,7 @@
           scale: 1,
           ease: "back.out(2)",
           stagger: 0.04,
-          duration: 0.3,
+          duration: 0.15,
           delay: lineIndex * 1.2
         });
       });
@@ -244,7 +262,81 @@ blocks.forEach((block, i) => {
     }, "+=0.2");
   }
 });
-
+//파티클
+  particlesJS("particles-js", {
+"particles": {
+    "number": {
+      "value": 160,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    },
+    "color": {
+      "value": "#ffffff"
+    },
+    "shape": {
+      "type": "circle"
+    },
+    "opacity": {
+      "value": 1,
+      "random": true,
+      "anim": {
+        "enable": true,
+        "speed": 1,
+        "opacity_min": 0,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 3,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 4,
+        "size_min": 0.3,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": false
+    },
+    "move": {
+      "enable": true,
+      "speed": 0.2,
+      "direction": "none",
+      "random": true,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false
+    }
+  },
+  "interactivity": {
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "bubble"
+      },
+      "onclick": {
+        "enable": true,
+        "mode": "repulse"
+      }
+    },
+    "modes": {
+      "bubble": {
+        "distance": 250,
+        "size": 0,
+        "duration": 2,
+        "opacity": 0
+      },
+      "repulse": {
+        "distance": 400,
+        "duration": 4
+      }
+    }
+  },
+  "retina_detect": true
+  });
   </script>
 </body>
 </html>
