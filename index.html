@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>나의 포트폴리오</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+</head>
+<body>
+  <div class="loader"><h1>Loading...</h1></div>
+  <div class="cursor"></div>
+  <div class="time-bar">
+    <span>Seoul Time: <strong id="seoul-time">--:--:--</strong></span>
+  </div>
+  <!-- 모바일 메뉴 전체화면 팝업 -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- 메인 비디오 섹션 -->
+  <section class="hero" id="hero">
+    <video src="./vid/space.mp4" muted="" autoplay="" loop=""></video>
+    <h1 class="title" id="type-target">
+      <span class="type-line" data-text="I build fluid interfaces"></span><br />
+      <span class="type-line" data-text="that feel alive — "></span><span class="type-line name-highlight" data-text="Jeongbin Park"></span>
+    </h1>
+  </section>
+
+<section class="about" id="about">
+  <video class="about-bg" src="./vid/code.mp4" autoplay muted loop playsinline></video>
+  <div class="about-text">
+    <div class="text-block">
+      웹 에이전시에서 <strong class="highlight">웹 퍼블리셔</strong>로 근무하면서 다양한 경험을 쌓아왔습니다.
+    </div>
+    <div class="text-block">
+      <strong class="highlight">그누보드 기반</strong>으로 <strong class="highlight">반응형 웹사이트</strong>를 설계 및 퍼블리싱하였고,
+    </div>
+    <div class="text-block">
+      <strong class="highlight">기업 홈페이지</strong>, <strong class="highlight">정부 포럼</strong>, <strong class="highlight">이벤트 페이지</strong> 등 폭넓은 프로젝트에 참여했습니다.
+    </div>
+    <div class="text-block">
+      <strong class="highlight">GSAP</strong>, <strong class="highlight">AOS</strong> 등 다양한 모션 툴을 사용해 <strong class="highlight">창의적인 UI</strong>를 구현해왔습니다.
+    </div>
+  </div>
+</section>
+
+  <section class="projects" id="projects">
+    <h2>Projects</h2>
+    <div class="project-list">
+      <div class="project-card" data-aos="fade-up">
+        <img src="https://via.placeholder.com/400x250.png?text=Project+1" alt="프로젝트 1">
+        <p>프로젝트 1</p>
+      </div>
+      <div class="project-card" data-aos="fade-up">
+        <img src="https://via.placeholder.com/400x250.png?text=Project+1" alt="프로젝트 1">
+        <p>프로젝트 1</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="contact" id="contact">
+    <h2>Contact</h2>
+    <p>Email: your.email@example.com</p>
+    <p><a href="https://github.com/yourgithub" target="_blank" style="color:#00ffff">GitHub 프로필 보기</a></p>
+  </footer>
+
+  <!-- 메뉴 & TOP 버튼 (모바일용) -->
+  <div class="mobile-ui">
+    <button id="menuBtn">메뉴</button>
+    <button id="topBtn">TOP</button>
+  </div>
+
+  <!-- PC용 메뉴 -->
+  <nav class="main-nav">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- 스크립트 -->
+
+  <script>
+    // 로딩
+    window.addEventListener("load", () => {
+      gsap.to(".loader", {
+        opacity: 0,
+        duration: 1,
+        onComplete: () => document.querySelector(".loader").remove()
+      });
+      AOS.init({ duration: 1000, once: true });
+    });
+    function updateSeoulTime() {
+      const timeEl = document.getElementById("seoul-time");
+      const now = new Date();
+      // KST 보정 (UTC+9)
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const koreaTime = new Date(utc + (9 * 60 * 60 * 1000));
+      const hours = String(koreaTime.getHours()).padStart(2, '0');
+      const minutes = String(koreaTime.getMinutes()).padStart(2, '0');
+      const seconds = String(koreaTime.getSeconds()).padStart(2, '0');
+      timeEl.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // 매 초마다 갱신
+    setInterval(updateSeoulTime, 1000);
+    updateSeoulTime();
+
+    // // 텍스트 애니메이션
+    function animateTypeLines() {
+      const lines = document.querySelectorAll('.type-line');
+
+      lines.forEach((line, lineIndex) => {
+        const text = line.dataset.text;
+        line.innerHTML = ''; // 초기화
+
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.classList.add('char');
+          span.textContent = char === ' ' ? '\u00A0' : char; // 공백 처리
+          line.appendChild(span);
+        });
+
+        gsap.to(line.querySelectorAll('.char'), {
+          opacity: 1,
+          scale: 1,
+          ease: "back.out(2)",
+          stagger: 0.04,
+          duration: 0.3,
+          delay: lineIndex * 1.2
+        });
+      });
+    }
+
+    animateTypeLines();
+
+
+    // 커서 따라다니기
+    const cursor = document.querySelector(".cursor");
+    document.addEventListener("mousemove", e => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+    });
+
+    // 메뉴 클릭 → 부드럽게 이동
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          gsap.to(window, { scrollTo: target, duration: 0.1, ease: "power2.out" });
+        }
+        // 모바일 메뉴 닫기
+        document.getElementById("mobileMenu").classList.remove("open");
+      });
+    });
+
+    // 모바일 메뉴 토글
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      document.getElementById("mobileMenu").classList.toggle("open");
+    });
+
+    // TOP 버튼
+    document.getElementById("topBtn").addEventListener("click", () => {
+      gsap.to(window, { scrollTo: 0, duration: 0.8, ease: "power2.out" });
+    });
+    const menuLinks = document.querySelectorAll('.main-nav a, .mobile-menu a');
+
+// 섹션마다 active 클래스 적용
+document.querySelectorAll('section').forEach(section => {
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top center',
+    end: 'bottom center',
+    onEnter: () => activateMenu(section.id),
+    onEnterBack: () => activateMenu(section.id)
+  });
+});
+
+function activateMenu(id) {
+  menuLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${id}`) {
+      link.classList.add('active');
+    }
+  });
+}
+
+//어마웃 스크롤
+gsap.registerPlugin(ScrollTrigger);
+
+const blocks = document.querySelectorAll(".text-block");
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".about",
+    start: "top top",
+    end: "+=" + (blocks.length * window.innerHeight),
+    scrub: true,
+    pin: true,
+  }
+});
+
+blocks.forEach((block, i) => {
+  const nextBlock = blocks[i + 1];
+
+  // 등장 애니메이션
+  tl.to(block, {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    ease: "power2.out",
+  });
+
+  // 사라질 때 "다노스 스냅" 느낌
+  if (nextBlock) {
+    tl.to(block, {
+      opacity: 0,
+      y: -30,
+      filter: "blur(4px)",
+      scale: 0.98,
+      duration: 0.8,
+      ease: "power1.inOut"
+    }, "+=0.2");
+  }
+});
+
+  </script>
+</body>
+</html>
