@@ -69,13 +69,13 @@ body {
   z-index: 1001;
 }
 .mobile-ui button {
-  background: #00ffff;
-  color: #000;
-  font-weight: bold;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 30px;
-  cursor: pointer;
+  color: #00ffff;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid #00ffff;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  background-color: #000;
 }
 
 .mobile-menu {
